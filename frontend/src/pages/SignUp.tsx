@@ -4,16 +4,16 @@ import GenderCheckbox from "../components/GenderCheckbox";
 
 const SignUp = () => {
   return (
-    <div className="flex flex-col items-center justify-center min-w-96 mx-auto">
+    <div className='flex flex-col w-full items-center justify-center min-w-[300px] max-w-[80vw] md:max-w-[600px] mx-auto'>
       <div className="w-full p-6 rounded-lg shadow-md bg-gray-400/30 backdrop-blur-xs">
         <h1 className="text-3xl font-semibold text-center text-gray-300">
           Sign Up <span className="text-blue-500"> ChatApp</span>
         </h1>
 
-        <form className="flex flex-col gap-3 py-2">
-          <div>
+        <form className="flex flex-col gap-3 py-2 uppercase text-xs">
+          <div className="flex flex-col gap-2">
             <label className="label">
-              <span className="text-base label-text">Full Name</span>
+              <span className="label-text">Full Name</span>
             </label>
             <input
               type="text"
@@ -22,9 +22,9 @@ const SignUp = () => {
             />
           </div>
 
-          <div>
+          <div className="flex flex-col gap-2">
             <label className="label ">
-              <span className="text-base label-text">Username</span>
+              <span className="label-text">Username</span>
             </label>
             <input
               type="text"
@@ -33,9 +33,9 @@ const SignUp = () => {
             />
           </div>
 
-          <div>
+          <div className="flex flex-col gap-2">
             <label className="label">
-              <span className="text-base label-text">Password</span>
+              <span className="label-text">Password</span>
             </label>
             <input
               type="password"
@@ -44,9 +44,9 @@ const SignUp = () => {
             />
           </div>
 
-          <div>
+          <div className="flex flex-col gap-2">
             <label className="label">
-              <span className="text-base label-text">Confirm Password</span>
+              <span className="label-text">Confirm Password</span>
             </label>
             <input
               type="password"
@@ -65,7 +65,7 @@ const SignUp = () => {
           </Link>
 
           <div>
-            <button className="btn btn-block btn-sm mt-2 border border-slate-700">
+            <button className="btn btn-block btn-sm mt-2 border border-slate-700 uppercase text-xs">
               Sign Up
             </button>
           </div>
