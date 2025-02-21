@@ -35,7 +35,7 @@ const Login = () => {
 					</Link>
 
 					<div className="flex flex-col gap-2">
-						<button className='btn btn-block btn-sm mt-2 uppercase text-sm'>Login</button>
+						<button className='btn btn-soft btn-success btn-sm uppercase text-sm'>Login</button>
 					</div>
 				</form>
 			</div>
