@@ -17,7 +17,7 @@ const signup = async (req: Request, res: Response) => {
     const { fullName, username, password, confirmPassword, gender } = req.body;
 
     if (!fullName || !username || !password || !confirmPassword || !gender) {
-      return res.status(400).json({ error: "All fields are required" });
+      return res.status(400).json({ error: "Field are required" });
     }
 
     if (password !== confirmPassword) {
@@ -65,6 +65,10 @@ const signup = async (req: Request, res: Response) => {
 
 const login = async (req: Request, res: Response) => {
   try {
+
+    if(!req.body.username || !req.body.password) {
+        return res.status(400).json({ error: "Field are required" });
+    }
     const { username, password } = req.body;
     const user = await findUserByUsername(username);
 

@@ -1,3 +1,7 @@
+:root {
+  --primary-color: #112a27;
+}
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -8,3 +12,8 @@
   place-items: center;
 }
 
+@media (width <= 40rem) {
+  #root {
+    padding: 0;
+  }
+}

@@ -3,6 +3,7 @@ import prisma from "../../db/prisma.js";
 import { handleError } from "../utils/handleError.js";
 
 const sendMessage = async (req: Request, res: Response) => {
+
   try {
     const { id: receiverId } = req.params;
     const { message } = req.body;
@@ -81,7 +82,7 @@ const getMessages = async (req: Request, res: Response) => {
     });
 
     if (!conversation) {
-      return res.status(404).json([]);
+      return res.status(200).json([]);
     }
 
     res.status(200).json(conversation.messages);
