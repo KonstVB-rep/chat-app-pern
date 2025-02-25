@@ -3,17 +3,26 @@ import authRouter from './routes/auth.route.js';
 import messagesRouter from './routes/message.route.js';
 import cookieParser from 'cookie-parser';
 import "dotenv/config";
+import { app, server } from './socket/index.js';
+import path from 'path';
 
+const PORT = process.env.PORT || 5001
+const __dirname = path.resolve();
 
-const chatApp = express();
-const PORT = 5000
+app.use(cookieParser())
+app.use(express.json())
 
-chatApp.use(cookieParser())
-chatApp.use(express.json())
+app.use('/api/auth', authRouter)
+app.use('/api/messages', messagesRouter)
 
-chatApp.use('/api/auth', authRouter)
-chatApp.use('/api/messages', messagesRouter)
+if(process.env.NODE_ENV !== 'development') {
+	app.use(express.static(path.join(__dirname, '/frontend/build')));
 
-chatApp.listen(PORT, () => {
-    console.log(`listening on port ${PORT}`)
-})
+	app.get('*', (req, res) => {
+		res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
+	});
+}
+
+server.listen(PORT, () => {
+	console.log("Server is running on port " + PORT);
+});
