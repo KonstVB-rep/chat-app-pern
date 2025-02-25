@@ -5,8 +5,7 @@ import SendMessageButton from "./SendMessageButton";
 import useConversation from "@/entities/conversations/model/store/useConversation";
 
 const MessageInput = () => {
-  const { selectedConversation, selectedMessages, setSelectedMessages } =
-    useConversation();
+  const { selectedConversation, messages, setMessages } = useConversation();
 
   const [state, formAction] = useActionState(fetchSendMessage, null);
 
@@ -28,7 +27,7 @@ const MessageInput = () => {
           icon: "🚨",
         });
       } else {
-        setSelectedMessages([...selectedMessages, state]);
+        setMessages([...messages, state]);
       }
     }
   }, [state]);

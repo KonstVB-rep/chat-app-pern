@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { MessageType } from "../types";
-import useAuthContext from "@/hooks/useAuthContext";
+import useAuthContext from "@/context/AuthContext/useAuthContext";
 import useConversation from "@/entities/conversations/model/store/useConversation";
 
 const Message = ({ message }: { message?: MessageType }) => {
@@ -17,9 +17,8 @@ const Message = ({ message }: { message?: MessageType }) => {
     : selectedConversation?.profileImage;
   const chatClass = fromMe ? "chat-end" : "chat-start";
 
-  const bubbleBg = fromMe ? "bg-blue-500" : "";
-  // const shakeClass = message.shouldShake ? "shake" : "";
-
+  const bubbleBg = fromMe ? "bg-blue-500" : "bg-zinc-600";
+  const shakeClass = message?.shouldShake ? "shake" : "";
 
   return (
     <div className={`chat ${chatClass}`}>
@@ -39,7 +38,7 @@ const Message = ({ message }: { message?: MessageType }) => {
           )}
         </div>
       </div>
-      <p className={`chat-bubble text-white ${bubbleBg} text-sm md:text-md`}>
+      <p className={`chat-bubble text-white ${bubbleBg} ${shakeClass} text-sm md:text-md`}>
         {message?.body}
       </p>
       <span className="chat-footer opacity-50 text-xs flex gap-1 items-center text-white">

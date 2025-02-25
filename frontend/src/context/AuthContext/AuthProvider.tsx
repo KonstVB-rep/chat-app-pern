@@ -29,7 +29,6 @@ export const AuthProvider = ({ children }: PropsWithChildren) => {
           id: "auth-error",
           duration: 5000,
           position: "top-center",
-          icon: "🚨",
         });
       } finally {
         setLoading(false);

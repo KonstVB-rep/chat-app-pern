@@ -4,7 +4,7 @@ import useConversationStore from "@/entities/conversations/model/store/useConver
 
 const useGetMessages = () => {
   const [loading, setLoading] = useState<boolean>(false);
-  const {selectedMessages, setSelectedMessages, selectedConversation} = useConversationStore()
+  const {messages, setMessages, selectedConversation} = useConversationStore()
 
   useEffect(() => {
     if (!selectedConversation) return; 
@@ -13,7 +13,7 @@ const useGetMessages = () => {
     const getMessages = async () => {
       try {
         setLoading(true);
-        setSelectedMessages([])
+        setMessages([])
         const response = await fetch(`/api/messages/${selectedConversation.id}`, {
           method: "GET",
           signal: controller.signal,
@@ -25,7 +25,7 @@ const useGetMessages = () => {
     
         const data = await response.json();
         
-        if (isActive) setSelectedMessages(data);
+        if (isActive) setMessages(data);
       } catch (error: unknown) {
         if (controller.signal.aborted) return;
         console.log((error as Error).message || error);
@@ -47,10 +47,10 @@ const useGetMessages = () => {
       isActive = false;
       controller.abort();
     };
-  }, [selectedConversation, setSelectedMessages]);
+  }, [selectedConversation, setMessages]);
 
 
-  return { loading, selectedMessages };
+  return { loading, messages };
 };
 
 export default useGetMessages;

@@ -12,8 +12,10 @@
   place-items: center;
 }
 
-@media (width <= 40rem) {
+@media (width <= 48rem) {
   #root {
     padding: 0;
   }
 }
+
+

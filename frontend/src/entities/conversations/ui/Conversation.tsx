@@ -2,23 +2,22 @@ import { useCallback, useEffect, useState } from "react";
 import { ConversationType } from "../model/types";
 import useConversation from "../model/store/useConversation";
 import { useSearchParams } from "react-router-dom";
+import useSocketContext from "@/context/SocketContext/useSocketContext";
 
 const Conversation = ({ conversation }: { conversation: ConversationType }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [isImageLoaded, setIsImageLoaded] = useState(false);
 
   const { setSelectedConversation, selectedConversation } = useConversation();
+  const { onlineUsers } = useSocketContext();
 
   const isSelected = selectedConversation?.id === conversation.id;
-  const isOnline = false;
+  const isOnline = onlineUsers.includes(conversation.id);
 
-  const handleSelectConversation = useCallback(
-    () => {
-      setSelectedConversation(conversation);
-      setSearchParams({ conversationId: conversation.id });
-    },
-    [setSelectedConversation, conversation, setSearchParams]
-  );
+  const handleSelectConversation = useCallback(() => {
+    setSelectedConversation(conversation);
+    setSearchParams({ conversationId: conversation.id });
+  }, [setSelectedConversation, conversation, setSearchParams]);
 
   const handleImageLoad = () => {
     setIsImageLoaded(true);
@@ -27,7 +26,6 @@ const Conversation = ({ conversation }: { conversation: ConversationType }) => {
   useEffect(() => {
     const currentConversationId = searchParams.get("conversationId");
 
-    // Если параметр URL отличается от текущего id разговора, обновляем URL.
     if (currentConversationId === conversation.id) {
       setSelectedConversation(conversation);
     }
@@ -41,9 +39,15 @@ const Conversation = ({ conversation }: { conversation: ConversationType }) => {
   return (
     <>
       <div
-        className={`group flex gap-2 items-center p-2 py-1 cursor-pointer ${
-          isSelected ? "border-r-2 border-emerald-600" : ""
-        }`}
+        className={`group flex gap-2 items-center p-2 py-1 cursor-pointer relative 
+        ${
+          isOnline
+            ? "after:content-[''] after:absolute after:right-2 after:-top-1 after:bg-sky-500 after:h-[10px] after:w-[10px] after:rounded-full after:outline after:outline-white"
+            : ""
+        }
+          before:content-[""] before:absolute before:inset-0 before:bg-emerald-600 before:opacity-0 before:transition-opacity touch:active:before:opacity-10 hover:before:opacity-10  ${
+            isSelected ? "border-r-2 border-emerald-600" : ""
+          }`}
         tabIndex={0}
         role="button"
         aria-label={`Open chat with ${conversation.fullName}`}
@@ -79,6 +83,7 @@ const Conversation = ({ conversation }: { conversation: ConversationType }) => {
             {conversation.fullName}
           </p>
         </div>
+        {/* <CheckedSoundMessage id={conversation.id} /> */}
       </div>
 
       <div className="divider my-0 py-0 h-1 " />

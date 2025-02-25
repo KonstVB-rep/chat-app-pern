@@ -1,12 +1,12 @@
-
 import MessageContainer from "@/entities/messages/ui/MessageContainer";
-import useAuthContext from "@/hooks/useAuthContext";
+import useAuthContext from "@/context/AuthContext/useAuthContext";
 import Sidebar from "@/widgets/sidebar";
 import { Loader } from "lucide-react";
-
+import { useState } from "react";
 
 const Home = () => {
-  const { loading  } = useAuthContext();
+  const { loading } = useAuthContext();
+  const [openSidebar, setOpenSidebar] = useState<boolean>(false);
 
   if (loading) {
     return (
@@ -17,9 +17,9 @@ const Home = () => {
   }
 
   return (
-    <div className="flex w-full h-full md:max-w-screen-lg rounded-lg overflow-hidden bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-0">
-      <Sidebar />
-      <MessageContainer />
+    <div className="flex w-full h-full relative lg:max-w-screen-lg rounded-lg overflow-hidden bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-0">
+      {openSidebar && <Sidebar setOpenSidebar={setOpenSidebar} />}
+      <MessageContainer setOpenSidebar={setOpenSidebar} openSidebar={openSidebar} />
     </div>
   );
 };

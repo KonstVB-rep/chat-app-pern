@@ -8,6 +8,8 @@ const SendMessageButton = () => {
     <button
       type="submit"
       className="group absolute right-4 top-1/2 -translate-y-1/2 flex items-center justify-center cursor-pointer"
+      title="Send message"
+      aria-label="Send message"
     >
       {pending ? (
         <LoaderCircle className="animate-spin mx-auto" />

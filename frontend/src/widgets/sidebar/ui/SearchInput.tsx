@@ -39,14 +39,14 @@ const SearchInput = () => {
 
   return (
     <form
-      className="flex items-center gap-2 relative"
+      className="flex items-center relative"
       onSubmit={handleClickSearch}
     >
       <label className="w-full relative">
         <input
           type="text"
           placeholder="Search…"
-          className="input-sm md:input input-bordered rounded-full sm:rounded-full w-full"
+          className="input input-bordered w-full"
           value={value}
           onChange={(e) => setValue(e.target.value)}
         />
@@ -67,7 +67,7 @@ const SearchInput = () => {
       </label>
       <button
         type="submit"
-        className="btn md:btn-md btn-sm btn-circle bg-sky-500 text-white"
+        className="btn bg-sky-500 text-white"
       >
         <Search className="w-4 h-4 md:w-6 md:h-6 outline-none" />
       </button>

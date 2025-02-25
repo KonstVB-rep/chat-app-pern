@@ -6,7 +6,6 @@ import useConversationStore from "../model/store/useConversation";
 const Conversations = () => {
   const { loading, conversations } = useGetConversations();
   const { selectedConversation } = useConversationStore();
-  console.log(conversations, 'conversations')
 
   const sortConversation = [...conversations].sort((a, b) => {
     if (a.id === selectedConversation?.id) return -1;
@@ -17,11 +16,10 @@ const Conversations = () => {
   if(loading) return <span className="loading loading-spinner mx-auto"/>
 
   return (
-    <div className="py-2 flex flex-col gap-2 flex-1 overflow-auto">
+    <div className="py-2 flex flex-col gap-2 flex-1 overflow-y-auto">
       {sortConversation.map((conversation: ConversationType) => (
         <Conversation key={conversation.id} conversation={conversation} />
       ))}
-      {/* { loading && <span className="loading loading-spinner mx-auto"/>} */}
     </div>
   );
 };

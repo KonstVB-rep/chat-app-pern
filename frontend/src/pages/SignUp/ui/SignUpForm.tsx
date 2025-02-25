@@ -41,7 +41,7 @@ export const SignUpForm = () => {
       <GenderRadio />
       {error?.gender && <span className="text-xs text-red-500">{error.gender[0]}</span>}
 
-      <Link to={"/login"} className="text-sm hover:underline underline-offset-4 inline-block py-2 text-white">
+      <Link to={"/login"} className="text-sm hover:underline touch:active:underline underline-offset-4 inline-block py-2 text-white">
         Already have an account?
       </Link>
       <div className="flex flex-col gap-2">

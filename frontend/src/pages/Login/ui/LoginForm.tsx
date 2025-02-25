@@ -29,7 +29,7 @@ const LoginForm = () => {
 
       <Link
         to="/signup"
-        className="text-sm hover:underline underline-offset-4 text-white mt-2 inline-block"
+        className="text-sm hover:underline touch:active:underline underline-offset-4 text-white mt-2 inline-block"
       >
         {"Don't"} have an account?
       </Link>

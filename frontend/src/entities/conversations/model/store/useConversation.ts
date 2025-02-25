@@ -1,22 +1,23 @@
 import { create } from "zustand";
 import { ConversationType } from "../types";
 import { MessageType } from "@/entities/messages/types";
-// import { persist } from "zustand/middleware";
+import { persist } from "zustand/middleware";
 
 type ConversationStateType = {
     selectedConversation: ConversationType | null;
     setSelectedConversation: (conversation: ConversationType | null) => void;
-    selectedMessages: MessageType[];
-    setSelectedMessages: (selectedMessages: MessageType[]) => void;
+    messages: MessageType[];
+    setMessages: (messages: MessageType[]) => void;
 }
 
-const useConversationStore = create<ConversationStateType>((set) => {
-  return {
-    selectedConversation: null,
-    setSelectedConversation: (selectedConversation) => set({ selectedConversation }),
-    selectedMessages: [],
-    setSelectedMessages: (selectedMessages) => set({ selectedMessages }),
-  };
-});
+const useConversationStore = create<ConversationStateType>()(persist(
+  (set) => {
+    return {
+      selectedConversation: null,
+      setSelectedConversation: (selectedConversation) => set({ selectedConversation }),
+      messages: [],
+      setMessages: (messages) => set({ messages }),
+    }
+  }, { name: "conversation" }));
 
 export default useConversationStore;

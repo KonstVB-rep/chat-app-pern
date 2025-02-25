@@ -1,7 +1,7 @@
 import { useActionState, useEffect, useState } from "react";
 import fetchSignUp from "../api/actions";
 import SignUpSchema from "../model/schema";
-import useAuthContext from "@/hooks/useAuthContext";
+import useAuthContext from "@/context/AuthContext/useAuthContext";
 import toast from "react-hot-toast";
 
 export const useSignUp = () => {

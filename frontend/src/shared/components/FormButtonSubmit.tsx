@@ -6,13 +6,17 @@ interface FormButtonSubmitProps {
 }
 
 const FormButtonSubmit = ({ title }: FormButtonSubmitProps) => {
-  const { pending } = useFormStatus()
+  const { pending } = useFormStatus();
   return (
     <button
       type="submit"
-      className="w-full text-center bg-blue-500 cursor-pointer hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg transition-colors duration-300 group-invalid:pointer-events-none group-invalid:opacity-50"
+      className="w-full text-center bg-blue-500 cursor-pointer touch:active:bg-blue-700 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg transition-colors duration-300 group-invalid:pointer-events-none group-invalid:opacity-50"
     >
-     {pending ? <LoaderCircle className="animate-spin mx-auto color"/> : title}
+      {pending ? (
+        <LoaderCircle className="animate-spin mx-auto color" />
+      ) : (
+        title
+      )}
     </button>
   );
 };

@@ -21,7 +21,6 @@ const useGetConversations = () => {
           throw new Error("Failed to fetch conversations");
         }
         const data = await response.json();
-
         if (isActive) setConversations(data);
       } catch (error: unknown) {
         if (controller.signal.aborted) return;
