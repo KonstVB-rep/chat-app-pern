@@ -14,6 +14,6 @@
       "@api/*": ["src/api/*"],
       "@hooks/*": ["src/context/AuthContext/hook/*"],
       "@utils/*": ["src/utils/*"]
-    }
+    },
   }
 }
