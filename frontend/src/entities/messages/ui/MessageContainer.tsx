@@ -4,6 +4,8 @@ import Messages from "./Messages";
 import NoChatSelected from "./NoChatSelected";
 import { ChevronRight } from "lucide-react";
 import CheckedSoundMessage from "@/entities/conversations/ui/CheckedSoundMessage";
+import { useSearchParams } from "react-router";
+import { useEffect } from "react";
 
 type MessageContainerProps = {
   openSidebar: boolean;
@@ -14,7 +16,16 @@ const MessageContainer = ({
   openSidebar,
   setOpenSidebar,
 }: MessageContainerProps) => {
-  const { selectedConversation } = useConversation();
+  const { selectedConversation, setSelectedConversation } = useConversation();
+  const [searchParams] = useSearchParams();
+
+  useEffect(() => {
+    if (searchParams.get("conversationId") === null)
+      setSelectedConversation(null);
+  }, [
+    searchParams,
+    setSelectedConversation,
+  ]);
 
   const toggleSidebar = () => setOpenSidebar((prev) => !prev);
   return (

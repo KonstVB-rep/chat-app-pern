@@ -17,7 +17,7 @@ const Home = () => {
   }
 
   return (
-    <div className="flex w-full h-full relative lg:max-w-screen-lg rounded-lg overflow-hidden bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-0">
+    <div className="flex w-full h-full relative lg:max-w-screen-lg lg:rounded-lg overflow-hidden bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-0">
       {openSidebar && <Sidebar setOpenSidebar={setOpenSidebar} />}
       <MessageContainer setOpenSidebar={setOpenSidebar} openSidebar={openSidebar} />
     </div>

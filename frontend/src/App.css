@@ -5,17 +5,17 @@
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 0;
   text-align: center;
   min-height: 100dvh;
   display: grid;
   place-items: center;
 }
 
-@media (width <= 48rem) {
+/* @media (width <= 48rem) {
   #root {
     padding: 0;
   }
-}
+} */
 
 

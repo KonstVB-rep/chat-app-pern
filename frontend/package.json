@@ -13,6 +13,7 @@
     "@hookform/resolvers": "^4.1.0",
     "@tailwindcss/vite": "^4.0.7",
     "lucide-react": "^0.475.0",
+    "pern-chat-app": "file:..",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.54.2",
